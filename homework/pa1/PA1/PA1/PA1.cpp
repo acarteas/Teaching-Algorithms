@@ -26,6 +26,44 @@ HuffmanTree<char>* PA1::huffmanTreeFromText(vector<string> data)
 //NOTE: I used a recursive helper function to solve this!
 HuffmanTree<char>* PA1::huffmanTreeFromMap(unordered_map<char, string> huffmanMap)
 {
+	HuffmanNode<char>* root = new HuffmanInternalNode<char>{ nullptr, nullptr };
+	HuffmanInternalNode<char>* current = dynamic_cast<HuffmanInternalNode<char>*>(root);
+	string path = "0110";
+	char value = 'a';
+	for (int i = 0; i < path.length() - 1; i++)
+	{
+		char ch = path[i];
+		if (ch == '0')
+		{
+			//left
+			if (current->getLeftChild() == nullptr)
+			{
+				current->setLeftChild(new HuffmanInternalNode<char>{ nullptr, nullptr });
+				current = dynamic_cast<HuffmanInternalNode<char>*>(current->getLeftChild());
+			}
+		}
+		else
+		{
+			//right
+			if (current->getRightChild() == nullptr)
+			{
+				current->setRightChild(new HuffmanInternalNode<char>{ nullptr, nullptr });
+				current = dynamic_cast<HuffmanInternalNode<char>*>(current->getRightChild());
+			}
+		}
+
+	}
+
+	char last_ch = path[path.length() - 1];
+	if (last_ch == '0')
+	{
+		current->setLeftChild(new HuffmanLeafNode<char>{ value, 1 });
+	}
+	else
+	{
+		current->setRightChild(new HuffmanLeafNode<char>{ value, 1 });
+	}
+
     //Generates a Huffman Tree based on the supplied Huffman Map.Recall that a 
     //Huffman Map contains a series of codes(e.g. 'a' = > 001).Each digit(0, 1) 
     //in a given code corresponds to a left branch for 0 and right branch for 1.
@@ -36,6 +74,7 @@ HuffmanTree<char>* PA1::huffmanTreeFromMap(unordered_map<char, string> huffmanMa
 //NOTE: I used a recursive helper function to solve this!
 unordered_map<char, string> PA1::huffmanEncodingMapFromTree(HuffmanTree<char> *tree)
 {
+	return unordered_map<char, string>{};
 	HuffmanNode<char> *node = tree->getRoot();
 	if (node->isLeaf() == true)
 	{
@@ -64,7 +103,9 @@ unordered_map<char, string> PA1::readEncodingMapFromFile(string file_name)
 {
     //Creates a Huffman Map from the supplied file.Essentially, this is the 
     //inverse of writeEncodingMapToFile.  
+	
     unordered_map<char, string> result{};
+	huffmanTreeFromMap(result);
     return result;
 }
 
