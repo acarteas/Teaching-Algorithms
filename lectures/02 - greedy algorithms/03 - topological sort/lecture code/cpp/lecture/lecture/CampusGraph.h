@@ -73,36 +73,38 @@ public:
 			}
 		}
 
-		bool keep_going = true;
+        //contains list of nodes to visit along with depth
+        queue<pair<string, int>> to_visit{};
+        
+        //find tier 0 nodes
+        for (auto kvp : frequencies) 
+        {
+            if (kvp.second == 0)
+            {
+                to_visit.push(make_pair(kvp.first, 0));
+            }
+        }
 
-		while (keep_going == true)
-		{
-			keep_going = false;
+        while (to_visit.empty() == false)
+        {
+            auto front = to_visit.front();
+            to_visit.pop();
 
-			//find all vertieces with zero incoming edges
-			vector<string> current_tier{};
-			for (auto kvp : frequencies)
-			{
-				if (kvp.second == 0)
-				{
-					keep_going = true;
+            //add to correct result tier
+            result.resize(front.second + 1);
+            result[front.second].push_back(front.first);
 
-					//decrement frequency count to prevent rediscover later
-					frequencies[kvp.first]--;
-
-					//ready to be processed
-					current_tier.push_back(kvp.first);
-
-					//decrement incoming edge count for connected vertices
-					for (auto vertex : _graph[kvp.first]->getEdges())
-					{
-						frequencies[vertex.first->getKey()]--;
-					}
-				}
-			}
-			result.push_back(current_tier);
-			current_tier = vector<string>{};
-		}
+            //decrement all outgoing nodes
+            for (auto vertex : _graph[front.first]->getEdges())
+            {
+                string key = vertex.first->getKey();
+                frequencies[key]--;
+                if (frequencies[key] == 0)
+                {
+                    to_visit.push(make_pair(key, front.second + 1));
+                }
+            }
+        }
 		return result;
 	}
 
