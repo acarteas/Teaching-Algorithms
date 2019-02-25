@@ -16,7 +16,7 @@ def process_csv(file_name):
 #example of getting data from CSV
 result = process_csv("data.csv")
 
-g = Graph();
+g = Graph() 
 g.add_vertex("a")
 g.add_vertex("b")
 g.add_vertex("c")
