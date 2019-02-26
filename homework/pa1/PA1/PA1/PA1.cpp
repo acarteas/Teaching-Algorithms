@@ -39,8 +39,8 @@ HuffmanTree<char>* PA1::huffmanTreeFromMap(unordered_map<char, string> huffmanMa
 			if (current->getLeftChild() == nullptr)
 			{
 				current->setLeftChild(new HuffmanInternalNode<char>{ nullptr, nullptr });
-				current = dynamic_cast<HuffmanInternalNode<char>*>(current->getLeftChild());
 			}
+			current = dynamic_cast<HuffmanInternalNode<char>*>(current->getLeftChild());
 		}
 		else
 		{
@@ -48,8 +48,8 @@ HuffmanTree<char>* PA1::huffmanTreeFromMap(unordered_map<char, string> huffmanMa
 			if (current->getRightChild() == nullptr)
 			{
 				current->setRightChild(new HuffmanInternalNode<char>{ nullptr, nullptr });
-				current = dynamic_cast<HuffmanInternalNode<char>*>(current->getRightChild());
 			}
+			current = dynamic_cast<HuffmanInternalNode<char>*>(current->getRightChild());
 		}
 
 	}

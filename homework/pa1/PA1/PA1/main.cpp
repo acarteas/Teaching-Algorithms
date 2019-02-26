@@ -33,7 +33,7 @@ static vector<string> readFile(string input_file_name)
 //test function for PA1
 void pa1Test()
 {
-	vector<string> files{ "pa1test.txt", "test.txt", "savio.txt", "kennedy.txt" };
+	vector<string> files{ "pa1test.txt", "savio.txt", "kennedy.txt" };
 	for (string file : files)
 	{
 		cout << "Analzying file " << file << "..." << endl;
