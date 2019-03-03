@@ -1,4 +1,4 @@
-A B 5
-A C 4
-C D 2
-B D 2
+A,B,5
+A,C,4
+C,D,2
+B,D,2
