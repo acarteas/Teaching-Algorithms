@@ -2,9 +2,9 @@ def calculate_edit_distance(first, second):
     matrix = []
 
     # construct matrix
-    for i in range(len(first)):
+    for i in range(len(first) + 1):
         matrix.append([])
-        for j in range(len(second)):
+        for j in range(len(second) + 1):
             matrix[i].append(0)
 
     # fill in first row
@@ -16,8 +16,8 @@ def calculate_edit_distance(first, second):
         matrix[i][0] = i
 
     # compute rest of matrix
-    for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
+    for i in range(1, len(matrix)):
+        for j in range(1, len(matrix[i])):
 
             top_cost = matrix[i - 1][j] + 1
             left_cost = matrix[i][j - 1] + 1
@@ -33,3 +33,4 @@ def calculate_edit_distance(first, second):
 
 if __name__ == '__main__':
    print("dog and frog:", calculate_edit_distance("dog", "frog"))
+   print("of and racoon:", calculate_edit_distance("of", "racoon"))
