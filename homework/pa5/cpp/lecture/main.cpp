@@ -59,6 +59,6 @@ int calculateEditDistance(const string& first, const string& second)
 
 int main(void)
 {
-   cout << calculateEditDistance("dog", "frog") << endl;
+   cout << calculateEditDistance("of", "racoon") << endl;
    return 0;
 }
